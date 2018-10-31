@@ -1,0 +1,9 @@
+// Import the init file from uwmbase
+//
+// This file makes some bootstrap utilities available and pulls in the 
+// variables defined in the uwmbase theme.
+
+@import '../uwmbase/src/scss/init';
+
+// If your theme uses any custom mixins or functions available, include them here
+// to make them available in other .scss files in your theme.

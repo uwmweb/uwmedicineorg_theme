@@ -1,0 +1,6 @@
+{
+  "name": "uwmweb/uwmedicineorg_theme",
+  "description": "Theme for uwmedicine.org, which is a sub-theme of the UW Medicine base theme and component library",
+  "type": "drupal-theme",
+  "license": "GPL-2.0-or-later"
+}
