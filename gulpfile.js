@@ -32,10 +32,10 @@ options.rootPath = {
 };
 
 options.theme = {
-  name       : 'uwmbase',
+  name       : 'uwmedicineorg',
   root       : options.rootPath.theme,
   source     : {
-    uwmbase     : options.rootPath.theme + '../uwmbase/',
+    uwmbaseinit : options.rootPath.theme + '../uwmbase/init',
     base        : options.rootPath.theme + 'src/',
     components  : options.rootPath.theme + 'src/components/',
     scss        : options.rootPath.theme + 'src/scss/',
@@ -154,12 +154,12 @@ gulp.task('build:production', ['styles:production', 'js:production', 'images', '
 // Compile CSS.
 // ##########
 var sassFiles = [
-  options.theme.source.uwmbase + '**/*.scss',
+  options.theme.source.uwmbaseinit + '**/*.scss',
   options.theme.source.scss + '**/*.scss',
   options.theme.source.components + '**/*.scss',
   options.theme.source.styleguide + '*.scss',
   // Do not open Sass partials as they will be included as needed.
-  '!' + options.theme.source.uwmbase + '**/_*.scss',
+  '!' + options.theme.source.uwmbaseinit + '**/_*.scss',
   '!' + options.theme.source.scss + '**/_*.scss',
   '!' + options.theme.source.components + '**/_*.scss',
   '!' + options.theme.source.styleguide + '_*.scss'
@@ -189,7 +189,7 @@ gulp.task('styles:production', ['clean:css'], function () {
 // ##################
 // Compile JS
 // ##################
-gulp.task('js', ['clean:js', 'js:vendor'], function () {
+gulp.task('js', ['clean:js'], function () {
   return gulp.src([
     options.theme.source.components + '**/*.js',
     options.theme.source.js + '**/*.js'
@@ -202,14 +202,6 @@ gulp.task('js', ['clean:js', 'js:vendor'], function () {
     .pipe($.sourcemaps.write('./'))
     .pipe(gulp.dest(options.theme.build.js))
     .pipe($.if(browserSync.active, browserSync.stream({match: '**/*.js'})));
-});
-
-gulp.task('js:vendor', function() {
-  return gulp.src([
-    options.theme.source.bootstrapjs + '**/*.js'
-  ])
-    .pipe($.rename({dirname: ''}))
-    .pipe(gulp.dest(options.theme.build.bootstrapjs));
 });
 
 gulp.task('js:production', ['clean:js', 'js:vendor'], function () {
